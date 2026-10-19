@@ -1,7 +1,6 @@
 
-# NLP Question Pair Similarity
-
-A Machine Learning based NLP system that predicts whether two questions have the same meaning using text processing, Bag of Words (BoW), and engineered features.
+# Quora Question Pair Similarity using NLP
+A Natural Language Processing (NLP) and Machine Learning project that explores whether two questions have the same meaning. The project compares a Bag of Words (BoW) baseline with models that use basic and advanced engineered text features.
 
 ## 🚀 Project Notebooks
 
