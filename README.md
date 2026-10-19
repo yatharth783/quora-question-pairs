@@ -6,8 +6,10 @@ A Natural Language Processing (NLP) and Machine Learning project that explores w
 
 This project includes four Jupyter notebooks covering EDA, baseline modelling, feature engineering, and advanced text preprocessing.
 
-## Quora Question Pair Similarity using NLP
-A Natural Language Processing (NLP) and Machine Learning project that explores whether two questions have the same meaning. The project compares a Bag of Words (BoW) baseline with models that use basic and advanced engineered text features.
+## 🎯 Problem Statement
+Question-and-answer platforms can contain many questions that ask the same thing using different wording. This project treats duplicate-question detection as a binary classification task and predicts whether a pair of questions is duplicate or non-duplicate.
+- 1 — duplicate questions
+- 0 — non-duplicate questions
 
 ## 📌 Features
 
