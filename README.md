@@ -1,18 +1,17 @@
 # quora-question-pairs
 A Natural Language Processing (NLP) and Machine Learning project that explores whether two questions have the same meaning. The project compares a Bag of Words (BoW) baseline with models that use basic and advanced engineered text features.
-Problem Statement
+**Problem Statement**
 Question-and-answer platforms can contain many questions that ask the same thing using different wording. This project treats duplicate-question detection as a binary classification task and predicts whether a pair of questions is duplicate or non-duplicate.
 - 1 — duplicate questions
 - 0 — non-duplicate questions
-Project Notebooks
-Notebook	Purpose
-initial_EDA.ipynb	Exploratory Data Analysis (EDA), target-label distribution, and dataset inspection.
-only_bow.ipynb	Baseline model using Bag of Words representations of both questions.
-bow_with_basic_feature.ipynb	BoW combined with basic text features such as word counts, common words, and word-share features.
-bow_with_preproceesing_and_advanced_feature.ipynb	Text preprocessing, advanced engineered features, fuzzy matching, t-SNE visualizations, and model experiments.
-
-
-Workflow
+**Project Notebooks**
+| Notebook | Purpose |
+|---|---|
+| `initial_EDA.ipynb` | Exploratory Data Analysis (EDA), target-label distribution, and dataset inspection. |
+| `only_bow.ipynb` | Baseline model using Bag of Words representations of both questions. |
+| `bow_with_basic_feature.ipynb` | BoW combined with basic text features such as word counts, common words, and word-share features. |
+| `bow_with_preproceesing_and_advanced_feature.ipynb` | Text preprocessing, advanced engineered features, fuzzy matching, t-SNE visualizations, and model experiments. |
+**Workflow**
 1. Load and inspect the question-pair dataset.
 2. Explore duplicate and non-duplicate question pairs.
 3. Clean and preprocess question text where required.
@@ -20,7 +19,7 @@ Workflow
 5. Create additional features to describe the question pairs.
 6. Train and evaluate classification models.
 7. Visualize selected engineered features and their patterns.
-Features Explored
+**Features Explored**
 Bag of Words
 CountVectorizer converts text into numeric word-count vectors. The notebooks experiment with different vocabulary limits and use the vectors for both questions as model input.
 Basic Features
@@ -49,7 +48,7 @@ The notebooks expect a train.csv dataset accessible at /content/train.csv in Goo
 - is_duplicate
 - id, qid1, and qid2 (where available)
 The dataset is not included in this repository by this README. Upload it to your Colab session or change the path in the notebooks to match your environment. Check the dataset's terms before redistributing it publicly.
-Requirements
+**Requirements**
 The notebooks use Python and common data science/NLP libraries, including:
 - NumPy and Pandas
 - Matplotlib and Seaborn
@@ -60,29 +59,22 @@ The notebooks use Python and common data science/NLP libraries, including:
 - Plotly
 - XGBoost
 - Beautiful Soup (bs4)
-Install the libraries with:
-pip install numpy pandas matplotlib seaborn scikit-learn nltk fuzzywuzzy distance plotly xgboost beautifulsoup4
-Some notebooks use NLTK stopwords. If needed, download them in a notebook cell:
-import nltk
-nltk.download("stopwords")
-How to Run
+**How to Run**
 1. Clone or download this repository.
 2. Open a notebook in Google Colab or Jupyter Notebook.
 3. Upload train.csv to the Colab session, or update the dataset path in the notebook.
 4. Install any missing dependencies.
 5. Run the notebook cells from top to bottom.
 6. Compare the BoW baseline with the basic-feature and advanced-feature experiments.
-Limitations and Notes
+**Limitations and Notes**
 - Model performance depends on the dataset sample, preprocessing, features, and model settings.
 - Some experiments use sampled data; results should not be assumed to represent full-dataset performance.
-- Length and word-overlap features provide useful signals but do not independently establish semantic equivalence.
-- For a more reliable evaluation, consider stratified splitting, precision, recall, F1-score, ROC-AUC, cross-validation, and checks for data leakage.
 - The notebooks are experimental and may need small changes for newer library versions.
-Future Improvements
+**Future Improvements**
 - Add a reusable function to predict whether two user-provided questions are duplicates.
 - Compare BoW with TF-IDF, sentence embeddings, or transformer-based models.
 - Tune model hyperparameters with cross-validation.
 - Package preprocessing and prediction into a reproducible pipeline.
 - Build a simple web interface for interactive question-pair comparison.
-Tech Stack
+**Tech Stack**
 Python · Pandas · NumPy · NLTK · scikit-learn · XGBoost · FuzzyWuzzy · Plotly · Matplotlib · Seaborn · Google Colab
