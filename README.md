@@ -1,110 +1,142 @@
 
-# Quora Question Pair Similarity using NLP
-A Natural Language Processing (NLP) and Machine Learning project that explores whether two questions have the same meaning. The project compares a Bag of Words (BoW) baseline with models that use basic and advanced engineered text features.
+# Quora Question Pairs — AI-Powered Question Similarity
 
-## 🚀 Project Notebooks
+### Are these questions really the same?
 
-This project includes four Jupyter notebooks covering EDA, baseline modelling, feature engineering, and advanced text preprocessing.
+An ML-powered web application that compares two questions and predicts whether they are duplicates. Built using Python, scikit-learn, and Streamlit.
 
-## 🎯 Problem Statement
-Question-and-answer platforms can contain many questions that ask the same thing using different wording. This project treats duplicate-question detection as a binary classification task and predicts whether a pair of questions is duplicate or non-duplicate.
-- 1 — duplicate questions
-- 0 — non-duplicate questions
+## Features
 
-## 📌 Features
+- Compare two questions and predict Duplicate or Not Duplicate.
+- Text preprocessing and feature engineering.
+- Random Forest with engineered features and Bag-of-Words.
+- TF-IDF + Logistic Regression with word and character n-grams.
+- Model evaluation using accuracy, precision, recall, F1-score, and confusion matrix.
+- Dark-themed Streamlit interface.
+- Saved model comparison metrics.
 
-- Exploratory Data Analysis (EDA)
-- Text preprocessing using NLP techniques
-- Bag of Words (BoW) feature extraction
-- Basic text features such as character length and word count
-- Advanced features for question-pair comparison
-- Common word and token-overlap analysis
-- Fuzzy matching features
-- t-SNE visualization of engineered features
-- Duplicate and non-duplicate question classification
-
-## 🛠️ Technologies Used
+## Tech Stack
 
 - Python
-- Pandas
-- NumPy
-- Matplotlib
-- Seaborn
-- Scikit-learn
+- Streamlit
+- pandas and NumPy
+- scikit-learn
 - NLTK
-- XGBoost
-- FuzzyWuzzy
-- Plotly
-- Google Colab / Jupyter Notebook
+- Beautiful Soup
+- fuzzywuzzy
+- distance
+- joblib
 
-### Workflow
+## Model Performance
+
+Reported results from a comparison run on 80,858 rows:
+
+| Model | Accuracy | Precision | Recall | F1-score |
+|---|---:|---:|---:|---:|
+| Random Forest | 80.31% | 74.90% | 70.18% | 72.46% |
+| TF-IDF + Logistic Regression | 79.52% | 68.30% | 83.12% | 74.98% |
+
+**Important:** These are experimental results. Verify that the comparison test data was excluded from training both models before presenting these metrics as a fair benchmark.
+
+### Understanding the Metrics
+
+- **Accuracy:** Percentage of all predictions that are correct.
+- **Precision:** How often a predicted duplicate is actually a duplicate.
+- **Recall:** How many actual duplicate pairs the model identifies.
+- **F1-score:** Balance between precision and recall.
+
+In the reported comparison, Logistic Regression achieved higher recall and F1-score, while Random Forest achieved higher accuracy and precision.
+
+## Project Structure
 
 ```text
-Question Pair Input
-        ↓
-Text Preprocessing
-        ↓
-Exploratory Data Analysis
-        ↓
-Bag of Words (BoW)
-        ↓
-Feature Engineering
-        ↓
-Machine Learning Model
-        ↓
-Duplicate / Non-Duplicate Prediction
+quora-question-pairs/
+├── app.py
+├── train_model.py
+├── train_tfidf_model.py
+├── compare_models.py
+├── requirements.txt
+├── train.csv
+└── models/
+    ├── quora_rf_model.pkl
+    ├── count_vectorizer.pkl
+    ├── stopwords.pkl
+    ├── metadata.json
+    ├── quora_tfidf_lr_model.pkl
+    ├── comparison_test.csv
+    ├── tfidf_lr_results.json
+    └── model_comparison_results.json
 ```
 
-## 📂 Project Structure
+This structure is illustrative; your actual files may differ. Avoid uploading large datasets or artifacts that should not be public.
 
-```text
-NLP-Question-Pair-Similarity/
-│
-├── initial_EDA.ipynb
-├── only_bow.ipynb
-├── bow_with_basic_feature.ipynb
-├── bow_with_preproceesing_and_advanced_feature.ipynb
-└── README.md
+## Getting Started
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/yatharth783/quora-question-pairs.git
+cd quora-question-pairs
 ```
 
-## 📊 Notebooks Description
+### 2. Create a Virtual Environment (Windows CMD)
 
-- **initial_EDA.ipynb:** Explores the dataset and analyzes question-pair patterns.
-- **only_bow.ipynb:** Implements a baseline approach using Bag of Words features.
-- **bow_with_basic_feature.ipynb:** Combines BoW with basic text features.
-- **bow_with_preproceesing_and_advanced_feature.ipynb:** Explores text preprocessing, advanced feature engineering, fuzzy matching, and visualization.
+```cmd
+python -m venv .venv
+.venv\Scripts\activate
+```
 
-## 📁 Dataset
+### 3. Install Dependencies
 
-The notebooks use a Quora Question Pairs-style dataset containing two questions and a target label indicating whether the questions are duplicates.
+```cmd
+python -m pip install -r requirements.txt
+```
 
-Expected columns include:
+### 4. Run the Application
+
+```cmd
+python -m streamlit run app.py
+```
+
+Streamlit will provide a local URL, usually `http://localhost:8501`.
+
+## Training Models
+
+The training scripts expect `train.csv` with these columns:
+
 - `question1`
 - `question2`
 - `is_duplicate`
 
-The dataset must be available at the file path specified in the notebook.
+Labels:
+- `1` = Duplicate questions
+- `0` = Non-duplicate questions
 
-## ⚙️ Installation
+Train and evaluate using:
 
-Install the required Python libraries:
-
-```bash
-pip install numpy pandas matplotlib seaborn scikit-learn nltk xgboost fuzzywuzzy distance plotly
+```cmd
+python train_model.py
+python train_tfidf_model.py
+python compare_models.py
 ```
 
-For notebooks using NLTK stopwords:
+Run only the scripts you need and ensure the required dependencies and dataset are available.
 
-```python
-import nltk
-nltk.download('stopwords')
-```
+**For a fair comparison:** Train both models on the same training split and evaluate them on the same untouched test split. Prevent test data from leaking into training or vectorizer fitting.
 
-## 🔮 Future Improvements
+## Limitations
 
-- Add TF-IDF and word embedding approaches.
-- Experiment with transformer-based sentence embeddings.
-- Evaluate models using precision, recall, F1-score, and ROC-AUC.
-- Build an interactive web application for question-pair predictions.
-- Improve model performance through hyperparameter tuning.
+- Predictions are estimates and may be incorrect.
+- Similar words do not always mean similar intent.
+- TF-IDF represents statistical word and character patterns; it does not fully understand meaning like a human.
+- Results depend on preprocessing, dataset splits, and model settings.
+- The reported metrics should not be treated as a definitive fair benchmark until train/test separation is verified.
+
+## Future Improvements
+
+- Fair, leakage-free model benchmarking.
+- Hyperparameter and classification-threshold tuning.
+- More detailed error analysis.
+- Explore sentence embeddings or transformer-based models.
+- Add automated tests and deploy the Streamlit application.
 
