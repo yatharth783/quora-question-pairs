@@ -6,6 +6,9 @@ A Natural Language Processing (NLP) and Machine Learning project that explores w
 
 This project includes four Jupyter notebooks covering EDA, baseline modelling, feature engineering, and advanced text preprocessing.
 
+## Quora Question Pair Similarity using NLP
+A Natural Language Processing (NLP) and Machine Learning project that explores whether two questions have the same meaning. The project compares a Bag of Words (BoW) baseline with models that use basic and advanced engineered text features.
+
 ## 📌 Features
 
 - Exploratory Data Analysis (EDA)
@@ -94,15 +97,6 @@ For notebooks using NLTK stopwords:
 import nltk
 nltk.download('stopwords')
 ```
-
-## ▶️ How to Run
-
-1. Clone or download this repository.
-2. Open the notebook in Google Colab or Jupyter Notebook.
-3. Upload the dataset and update its file path if required.
-4. Install any missing dependencies.
-5. Run the notebook cells sequentially.
-6. Compare the different feature-engineering approaches and model results.
 
 ## 🔮 Future Improvements
 
